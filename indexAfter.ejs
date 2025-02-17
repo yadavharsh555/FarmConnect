@@ -1,0 +1,323 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FarmConnect - Contract Farming Platform</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+
+      #img {
+        background-image: url("https://www.istockphoto.com/photo/young-indian-farmer-with-agronomist-at-banana-field-gm1316735334-404380658");
+      }
+
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body class="bg-gray-100">
+    <nav class="bg-green-600 p-4 shadow-lg">
+      <div class="container mx-auto flex justify-between items-center">
+        <a href="#" class="text-white text-2xl font-bold">FarmConnect</a>
+        <ul class="flex space-x-6">
+          <li>
+            <a href="#features" class="text-white hover:text-green-200"
+              >Features</a
+            >
+          </li>
+          <li>
+            <a href="contractHistory" class="text-white hover:text-green-200"
+              >Contracts</a
+            >
+          </li>
+          <li>
+            <a href="#about" class="text-white hover:text-green-200">About</a>
+          </li>
+          <li>
+            <a href="#contact" class="text-white hover:text-green-200"
+              >Contact</a
+            >
+          </li>
+        </ul>
+        <div class="flex items-center relative">
+          <button
+            id="profile-icon"
+            class="flex items-center"
+            onclick="toggleDropdown(event)"
+          >
+            <img
+              src="<%= user.profilePic %>"
+              alt="<%= user.name %>'s Profile Picture"
+              class="w-8 h-8 rounded-full"
+              onerror="this.onerror=null; this.src='<%= user.role === 'farmer' ? '/images/farmer-default.png' : '/images/buyer-default.png' %>';"
+            />
+          </button>
+          <div
+            id="profile-dropdown"
+            class="profile-dropdown hidden  absolute right-0  bg-white shadow-lg rounded mt-96 p-4 w-75"
+          >
+            <div class="mb-2">
+              <img
+                src="<%= user.profilePic %>"
+                alt="<%= user.name %>'s Profile Picture"
+                class="w-16 h-16 rounded-full"
+                onerror="this.onerror=null; this.src='<%= user.role === 'farmer' ? '/images/farmer-default.png' : '/images/buyer-default.png' %>';"
+              />
+              <% if (user) { %>
+              <h3 class="font-bold text-lg"><%= user.name %></h3>
+              <p class="text-gray-600"><%= user.email %></p>
+              <p class="text-gray-500">Role: <%= user.role %></p>
+              <p class="text-gray-500">Phone: <%= user.number %></p>
+              <p class="text-gray-500">State: <%= user.state %></p>
+              <p class="text-gray-500">City: <%= user.city %></p>
+              <p class="text-gray-500">Pin Code: <%= user.pinCode %></p>
+              <hr />
+              <a
+                href="/my-contracts"
+                class="block px-4 py-2 text-gray-700 hover:bg-gray-200 rounded mt-2 mb-2"
+                >My Contracts</a
+              >
+              <div>
+                <a
+                  href="/accepted-contracts"
+                  id="viewContractsBtn"
+                  class="mt-4 mb-4 px-3 py-1 bg-green-500 hover:bg-green-600 text-white rounded"
+                >
+                  Accepted Contracts
+                </a>
+              </div>
+              <% } else { %>
+              <p class="text-red-600">User not logged in.</p>
+              <% } %>
+            </div>
+            <hr />
+            <a
+              href="/<%= user._id %>/edit"
+              class="block px-4 py-2 text-gray-700 hover:bg-gray-200 rounded mt-2"
+              >Edit Profile</a
+            >
+            <hr />
+            <a
+              href="index"
+              onclick="confirmLogout(event)"
+              class="block px-4 py-2 text-gray-700 hover:bg-gray-200 rounded mt-2"
+              >Logout</a
+            >
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HOME PAGE -->
+    <section
+      class="bg-cover bg-center h-screen flex items-center overflow-hidden justify-center"
+      style="
+        background-image: url('https://plus.unsplash.com/premium_photo-1661962971074-1554649d40d5?q=80&w=1882&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+      "
+    >
+      <div class="text-center text-white">
+        <h1 class="text-5xl font-bold">
+          Empowering Farmers, Ensuring Stability
+        </h1>
+        <p class="text-xl mt-4">
+          Connect with buyers, manage contracts, and secure your income.
+        </p>
+      </div>
+    </section>
+
+    <!-- FEATURE SECTION -->
+    <section id="features" class="py-16 px-4 bg-white">
+      <div class="container mx-auto">
+        <h2 class="text-3xl font-bold text-center mb-12" id="features-title">
+          Our Key Features
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="bg-green-100 p-8 rounded-lg shadow-lg">
+            <h3 class="text-xl font-semibold mb-4" id="feature-1-title">
+              Contract Management
+            </h3>
+            <p class="text-gray-700" id="feature-1-desc">
+              Contract management in contract farming ensures clear agreements
+              between farmers and buyers, covering crop details, delivery, and
+              payments. It streamlines operations, reduces disputes, and builds
+              trust, making transactions efficient and transparent.
+            </p>
+            <button
+              class="mt-4 bg-green-500 text-white py-2 px-4 rounded hover:bg-green-400"
+            >
+              <a href="contracts">New Contract</a>
+            </button>
+            <button
+              class="mt-4 bg-green-500 text-white py-2 px-4 rounded hover:bg-green-400"
+            >
+              <a href="contractHistory">Contract List</a>
+            </button>
+          </div>
+
+          <div class="bg-green-100 p-8 rounded-lg shadow-lg">
+            <h3 class="text-xl font-semibold mb-4" id="feature-2-title">
+              Average Price Of Crop
+            </h3>
+            <p class="text-gray-700" id="feature-2-desc">
+              In India, crop prices vary widely based on the type, region, and
+              season. Staple grains like wheat and rice generally have stable
+              prices, between ₹25 and ₹35 per kilogram. Fruits and vegetables,
+              however, experience significant price fluctuations.
+            </p>
+            <button
+              class="mt-4 bg-green-500 text-white py-2 px-4 rounded hover:bg-green-400"
+              id="feature-2-btn"
+            >
+              <a
+                href="https://pib.gov.in/PressReleaseIframePage.aspx?PRID=2003184"
+                target="_blank"
+                >Learn More</a
+              >
+            </button>
+          </div>
+
+          <div class="bg-green-100 p-8 rounded-lg shadow-lg">
+            <h3 class="text-xl font-semibold mb-4" id="feature-3-title">
+              Payment History
+            </h3>
+            <p class="text-gray-700" id="feature-3-desc">
+              Our platform maintains a detailed record of all transactions,
+              providing transparent insights into payment statuses. Users can
+              easily track their payment history, view transaction details, and
+              ensure timely and secure financial exchanges.
+            </p>
+            <button
+              class="mt-4 bg-green-500 text-white py-2 px-4 rounded hover:bg-green-400"
+              id="feature-3-btn"
+            >
+              <a href="payment">Check Payments</a>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-gray-50">
+      <div class="container mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-gray-800">About FarmConnect</h2>
+          <p class="text-gray-600 mt-4 max-w-2xl mx-auto">
+            FarmConnect is a platform designed to bridge the gap between farmers
+            and buyers by simplifying the contract farming process. Our goal is
+            to empower farmers with secure, transparent contracts while ensuring
+            reliable market access for their produce.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 p-8 md:grid-cols-3 gap-8">
+          <!-- Mission -->
+          <div class="p-6 bg-green-300 rounded-lg shadow">
+            <h3 class="text-xl font-semibold text-gray-800 mb-4">
+              Our Mission
+            </h3>
+            <p class="text-gray-600">
+              At FarmConnect, our mission is to provide farmers with a stable,
+              predictable income by connecting them with trusted buyers. We
+              strive to foster transparent relationships that benefit both
+              parties.
+            </p>
+          </div>
+
+          <!-- Features -->
+          <div class="p-6 bg-green-300 rounded-lg shadow">
+            <h3 class="text-xl font-semibold text-gray-800 mb-4">
+              Core Features
+            </h3>
+            <ul class="list-disc list-inside text-gray-600 space-y-2">
+              <li>Streamlined contract management</li>
+              <li>Fair price negotiations</li>
+              <li>Secure and timely payments</li>
+              <li>Access to reliable buyers</li>
+            </ul>
+          </div>
+
+          <!-- Impact -->
+          <div class="p-6 bg-green-300 rounded-lg shadow">
+            <h3 class="text-xl font-semibold text-gray-800 mb-4">Our Impact</h3>
+            <p class="text-gray-600">
+              Since its inception, FarmConnect has helped numerous farmers
+              across regions secure stable contracts, improve their income, and
+              build long-lasting partnerships with buyers. We're committed to
+              making farming sustainable and profitable.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="py-16 bg-gray-200">
+      <div class="container mx-auto text-center">
+        <h2 class="text-3xl font-bold mb-6">Get in Touch Us</h2>
+        <p class="text-lg mb-8">
+          Have questions? We're here to help. Contact us today and see how we
+          can support your farming business.
+        </p>
+        <a
+          href="mailto:info@farmconnect.com"
+          class="inline-block bg-green-500 text-white font-semibold py-2 px-4 rounded hover:bg-green-400"
+          >Email Us</a
+        >
+        <a
+          href="tel:+1234567890"
+          class="inline-block bg-green-500 text-white font-semibold py-2 px-4 rounded hover:bg-green-400"
+          id="contact-call"
+          >Call Us</a
+        >
+      </div>
+    </section>
+    <!-- FOOTER -->
+    <footer class="bg-gray-800 py-4 text-center text-white">
+      <p>&copy; 2024 FarmConnect. All rights reserved.</p>
+    </footer>
+
+    <script>
+      // Function to toggle the profile dropdown
+      function toggleDropdown(event) {
+        event.stopPropagation(); // Prevent event bubbling
+        const dropdown = document.getElementById("profile-dropdown");
+        dropdown.classList.toggle("hidden");
+      }
+
+      // Close the dropdown if clicked outside
+      document.addEventListener("click", function (event) {
+        const dropdown = document.getElementById("profile-dropdown");
+        if (!event.target.closest("#profile-icon")) {
+          dropdown.classList.add("hidden");
+        }
+      });
+
+      // Confirm logout
+      function confirmLogout(event) {
+        event.preventDefault();
+        if (confirm("Are you sure you want to log out?")) {
+          window.location.href = event.target.href;
+        }
+      }
+
+      document
+        .getElementById("viewContractsBtn")
+        .addEventListener("click", function () {
+          const dropdown = document.getElementById("acceptedContractsDropdown");
+          dropdown.classList.toggle("hidden"); // Toggles the hidden class
+        });
+    </script>
+  </body>
+</html>

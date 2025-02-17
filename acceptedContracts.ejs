@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Accepted Contracts - FarmConnect</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+</head>
+
+<body class="bg-gray-100 p-6">
+  <div class="text-center mb-8">
+    <h1 class="text-3xl font-bold text-green-600">Accepted Contracts</h1>
+    <p class="text-gray-600">All your accepted contracts and their details.</p>
+  </div>
+
+  <div class="max-w-7xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden p-4" id="acceptedContractsContainer">
+    <% if (acceptedContracts.length> 0) { %>
+      <table class="min-w-full bg-white">
+        <caption class="sr-only">Table of Accepted Contracts</caption>
+        <thead>
+          <tr>
+            <th scope="col"
+              class="px-6 py-3 border-b border-gray-200 bg-green-500 text-white text-left text-xs font-semibold uppercase tracking-wider">
+              Crop Name</th>
+            <th scope="col"
+              class="px-6 py-3 border-b border-gray-200 bg-green-500 text-white text-left text-xs font-semibold uppercase tracking-wider">
+              Crop Type</th>
+            <th scope="col"
+              class="px-6 py-3 border-b border-gray-200 bg-green-500 text-white text-left text-xs font-semibold uppercase tracking-wider">
+              Price</th>
+            <th scope="col"
+              class="px-6 py-3 border-b border-gray-200 bg-green-500 text-white text-left text-xs font-semibold uppercase tracking-wider">
+              Quantity</th>
+            <th scope="col"
+              class="px-6 py-3 border-b border-gray-200 bg-green-500 text-white text-left text-xs font-semibold uppercase tracking-wider">
+              Date</th>
+            <th scope="col"
+              class="px-6 py-3 border-b border-gray-200 bg-green-500 text-white text-left text-xs font-semibold uppercase tracking-wider">
+              Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for (const contract of acceptedContracts) { %>
+            <tr>
+              <td class="px-6 py-4 border-b border-gray-200 bg-green-100">
+                <%= contract.Cname %>
+              </td>
+              <td class="px-6 py-4 border-b border-gray-200 bg-green-100">
+                <%= contract.Ctype %>
+              </td>
+              <td class="px-6 py-4 border-b border-gray-200 bg-green-100">
+                <%= contract.price.toFixed(2) %>
+              </td> <!-- Format price to 2 decimal places -->
+              <td class="px-6 py-4 border-b border-gray-200 bg-green-100">
+                <%= contract.quantity %>
+              </td>
+              <td class="px-6 py-4 border-b border-gray-200 bg-green-100">
+                <%= new Date(contract.date).toLocaleDateString('en-US') %> <!-- User-friendly date format -->
+              </td>
+              <td class="px-6 py-4 border-b border-gray-200 bg-green-100">
+                <a href="/contracts/<%= contract._id %>/details" class="text-blue-500 hover:text-blue-700">View
+                  Details</a>
+              </td>
+            </tr>
+            <% } %>
+        </tbody>
+        
+        <div id="acceptedContractsDropdown" class="mt-2">
+          <% acceptedContracts.forEach(contract => { %>
+          <a
+            href="/contracts/<%= contract._id %>/details"
+            class="block px-4 py-2 text-gray-700 hover:bg-gray-200 rounded"
+          >
+            <%= contract.Cname %> - <%= contract.price %>
+          </a>
+          <% }); %>
+        </div>
+      </table>
+      <% } else { %>
+        <div class="text-red-500 text-center mt-4">
+          <p>No accepted contracts found. Start accepting some contracts today!</p>
+        </div>
+        <% } %>
+  </div>
+</body>
+
+</html>
