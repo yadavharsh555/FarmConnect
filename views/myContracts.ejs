@@ -1,0 +1,109 @@
+<!-- views/my-contracts.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Contracts - FarmConnect</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+</head>
+
+<body class="bg-gray-100 p-6" id="contracts">
+  <!-- Contract History Heading -->
+  <div class="text-center mb-8">
+    <h1 class="text-3xl font-bold text-green-600">My Contracts</h1>
+    <p class="text-gray-600">All your contracts and their details.</p>
+  </div>
+
+  <!-- Loading Indicator -->
+  <div id="loading" class="text-center mb-4">
+    <p class="text-gray-500">Loading contracts...</p>
+  </div>
+
+  <!-- Contracts Container -->
+  <div id="contracts-container" class="max-w-7xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden" style="display:none;">
+    <table class="min-w-full bg-white">
+      <thead>
+        <tr>
+          <th class="w-1/4 px-6 py-3 border-b border-gray-200 bg-green-500 text-white text-left text-xs font-semibold uppercase tracking-wider">
+            Crop Name
+          </th>
+          <th class="w-1/4 px-6 py-3 border-b border-gray-200 bg-green-500 text-white text-left text-xs font-semibold uppercase tracking-wider">
+            Crop Type
+          </th>
+          <th class="w-1/6 px-6 py-3 border-b border-gray-200 bg-green-500 text-white text-left text-xs font-semibold uppercase tracking-wider">
+            Price
+          </th>
+          <th class="w-1/6 px-6 py-3 border-b border-gray-200 bg-green-500 text-white text-left text-xs font-semibold uppercase tracking-wider">
+            Quantity (Ton)
+          </th>
+          <th class="w-1/4 px-6 py-3 border-b border-gray-200 bg-green-500 text-white text-left text-xs font-semibold uppercase tracking-wider">
+            Delivery Date
+          </th>
+        </tr>
+      </thead>
+      <tbody id="contractTable">
+        <!-- Contracts will be displayed here -->
+      </tbody>
+    </table>
+  </div>
+
+  <div id="noContractsMessage" class="max-w-7xl mx-auto text-center hidden">
+    <p class="text-red-500">No contracts found.</p>
+  </div>
+
+  <script>
+    // Fetch and display contracts when the page loads
+    async function fetchContracts() {
+      const loadingIndicator = document.getElementById('loading');
+      const contractsContainer = document.getElementById('contracts-container');
+      const noContractsMessage = document.getElementById('noContractsMessage');
+
+      try {
+        const response = await fetch('/api/contracts/my-contracts'); // Ensure this endpoint is defined
+        const contracts = await response.json();
+
+        loadingIndicator.style.display = 'none'; // Hide loading indicator
+
+        if (response.ok) {
+          if (contracts.length > 0) {
+            contractsContainer.style.display = 'block'; // Show contracts container
+            displayContracts(contracts);
+          } else {
+            noContractsMessage.style.display = 'block'; // Show no contracts message
+          }
+        } else {
+          noContractsMessage.innerHTML = '<p>Failed to fetch contracts.</p>';
+          noContractsMessage.style.display = 'block'; // Show error message
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        noContractsMessage.innerHTML = '<p>Error fetching contracts.</p>';
+        noContractsMessage.style.display = 'block'; // Show error message
+      }
+    }
+
+    function displayContracts(contracts) {
+      const contractTable = document.getElementById('contractTable');
+      contractTable.innerHTML = '';  // Clear any existing content
+
+      contracts.forEach(contract => {
+        const contractElement = document.createElement('tr');
+        contractElement.innerHTML = `
+          <td class="px-6 py-4 border-b border-gray-200 bg-green-100">${contract.Cname}</td>
+          <td class="px-6 py-4 border-b border-gray-200 bg-green-100">${contract.Ctype}</td>
+          <td class="px-6 py-4 border-b border-gray-200 bg-green-100">&#8377; ${contract.price.toLocaleString("en-IN") }</td>
+          <td class="px-6 py-4 border-b border-gray-200 bg-green-100">${contract.quantity}</td>
+          <td class="px-6 py-4 border-b border-gray-200 bg-green-100">${new Date(contract.date).toLocaleDateString()}</td>
+        `;
+        contractTable.appendChild(contractElement);
+      });
+    }
+
+    // Call the fetchContracts function when the page loads
+    document.addEventListener('DOMContentLoaded', fetchContracts);
+  </script>
+</body>
+
+</html>

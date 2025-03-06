@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contract Lists - FarmConnect</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body class="bg-gray-100 p-6" id="contracts">
+    <!-- Contract History Heading -->
+    <div class="text-center mb-8">
+      <h1 class="text-3xl font-bold text-green-600">Contract Lists</h1>
+      <p class="text-gray-600">All contracts and their details.</p>
+    </div>
+
+    <!-- Search Bar and Filter Section -->
+    <div class="mb-4 max-w-3xl mx-auto flex items-center space-x-4">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search by Crop Name or Type"
+        class="w-full p-2 border border-gray-300 rounded"
+        onkeyup="applyFilters()"
+      />
+      <select id="filterSelect" class="p-2 border border-gray-300 rounded">
+        <option value="">All</option>
+        <option value="Farmer">Farmer</option>
+        <option value="Buyer">Buyer</option>
+      </select>
+      <button
+        onclick="applyFilters()"
+        class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
+      >
+        Apply
+      </button>
+    </div>
+
+    <!-- Contract History Table -->
+    <div
+      class="max-w-8xl mx-auto bg-white my-2 shadow-lg rounded-lg overflow-hidden"
+    >
+      <table class="min-w-full bg-white">
+        <thead>
+          <tr>
+            <th
+              class="w-1/6 px-6 py-3 border-b border-gray-200 bg-green-500 text-white text-left text-xs font-semibold uppercase tracking-wider"
+            >
+              Crop Name
+            </th>
+            <th
+              class="w-1/6 px-6 py-3 border-b border-gray-200 bg-green-500 text-white text-left text-xs font-semibold uppercase tracking-wider"
+            >
+              Crop Type
+            </th>
+            <th
+              class="w-2 px-6 py-3 border-b border-gray-200 bg-green-500 text-white text-left text-xs font-semibold uppercase tracking-wider"
+            > &#8377;
+              Price 
+            </th>
+            <th
+              class="w-2 px-6 py-3 border-b border-gray-200 bg-green-500 text-white text-left text-xs font-semibold uppercase tracking-wider"
+            >
+              Quantity
+            </th>
+            <th
+              class="w-1/6 px-6 py-3 border-b border-gray-200 bg-green-500 text-white text-left text-xs font-semibold uppercase tracking-wider"
+            >
+              Delivery Date
+            </th>
+            <th
+              class="w-3 px-6 py-3 border-b border-gray-200 bg-green-500 text-white text-left text-xs font-semibold uppercase tracking-wider"
+            >
+              Role
+            </th>
+            <th
+              class="w-1/6 px-6 py-3 border-b border-gray-200 bg-green-500 text-white text-left text-xs font-semibold uppercase tracking-wider"
+            >
+              State
+            </th>
+            <th
+              class="w-1/6 px-6 py-3 border-b border-gray-200 bg-green-500 text-white text-left text-xs font-semibold uppercase tracking-wider"
+            >
+              City
+            </th>
+            <th
+              class="w-1/6 px-6 py-3 border-b border-gray-200 bg-green-500 text-white text-left text-xs font-semibold uppercase tracking-wider"
+            >
+              Negotiate Contract
+            </th>
+            <th
+              class="w-1/6 px-6 py-3 border-b border-gray-200 bg-green-500 text-white text-left text-xs font-semibold uppercase tracking-wider"
+            >
+              Accept Contract
+            </th>
+          </tr>
+        </thead>
+
+        <tbody id="contractTable">
+          <% if (ContractHistory.length === 0) { %>
+          <tr>
+            <td
+              colspan="10"
+              class="px-6 py-4 border-b border-gray-200 bg-red-100 text-center"
+            >
+              No contracts available.
+            </td>
+          </tr>
+          <% } else { %> <% for (const contract of ContractHistory) { %>
+          <tr
+            data-crop-name="<%= contract.Cname %>"
+            data-crop-type="<%= contract.Ctype %>"
+            data-contract-role="<%= contract.role %>"
+          >
+            <td class="px-6 py-4 border-b border-gray-200 bg-green-100 mb-2">
+              <%= contract.Cname %>
+            </td>
+            <td class="px-6 py-4 border-b border-gray-200 bg-green-100 mb-2">
+              <%= contract.Ctype %>
+            </td>
+            <td class="px-8 py-4 border-b border-gray-200 bg-green-100 mb-2">&#8377;<%= contract.price.toLocaleString("en-IN") %>
+            </td>
+            <td class="px-6 py-4 border-b border-gray-200 bg-green-100 mb-2">
+              <%= contract.quantity %>
+            </td>
+            <td class="px-4 py-4 border-b border-gray-200 bg-green-100 mb-2">
+              <%= contract.date.toString().split(" ").slice(0, 4).join(" -") %>
+            </td>
+            <td class="px-6 py-4 border-b border-gray-200 bg-green-100 mb-2">
+              <%= contract.role %>
+            </td>
+            <td class="px-6 py-4 border-b border-gray-200 bg-green-100 mb-2">
+              <%= contract.state %>
+            </td>
+            <td class="px-4 py-4 border-b border-gray-200 bg-green-100 mb-2">
+              <%= contract.city %>
+            </td>
+            <td class="px-2 py-4 border-b border-gray-200 bg-green-100 mb-2">
+              <button
+                id="negotiateBtn-<%= contract._id %>"
+                class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
+                onclick="fetchContractInfo('<%= contract._id %>', '<%= contract.userId ? contract.userId.name : 'N/A' %>', '<%= contract.userId ? contract.userId.number : 'N/A' %>', '<%= contract.userId ? contract.userId.email : 'N/A' %>', '<%= contract.userId ? contract.userId.role : 'N/A' %>')"
+              >
+                Negotiate
+              </button>
+            </td>
+            <td
+              id="acceptTd-<%= contract._id %>"
+              class="px-2 py-4 border-b border-gray-200 bg-green-100 mb-2"
+            >
+              <% if ((user.role.toLowerCase() === 'farmer' && contract.role.toLowerCase() === 'buyer') ||
+                     (user.role.toLowerCase() === 'buyer' && contract.role.toLowerCase() === 'farmer')) { %>
+                <button
+                  id="acceptBtn-<%= contract._id %>"
+                  class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
+                  onclick="acceptContract('<%= contract._id %>')"
+                >
+                  Accept
+                </button>
+              <% } else { %>
+                <button
+                  class="bg-green-500 text-white font-bold py-2 px-4 rounded cursor-not-allowed"
+                  disabled
+                  aria-disabled="true"  
+                >
+                  Cannot
+                </button>
+              <% } %>
+            </td>
+            
+          </tr>
+          <% } %> <% } %>
+        </tbody>
+      </table>
+    </div>
+
+    <div
+      id="negotiationModal"
+      class="hidden fixed inset-0 flex items-center justify-center z-50"
+    >
+      <div class="bg-white p-6 rounded-lg shadow-lg">
+        <h2 class="text-xl font-bold mb-4">Negotiate Contract</h2>
+        <div id="modalContent" class="mb-4"></div>
+        <div class="flex space-x-4">
+          <button
+            onclick="sendEmail()"
+            class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+          >
+            Email
+          </button>
+          <button
+            onclick="makeCall()"
+            class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
+          >
+            Call
+          </button>
+        </div>
+        <button
+          onclick="closeModal()"
+          class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded mt-4"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+
+    <script type="module" src="/js/fetchContract.js"></script>
+    <script>
+      async function acceptContract(contractId) {
+  try {
+    // Assuming you have the token stored in localStorage or any state management
+    const token = localStorage.getItem('authToken'); // Adjust according to your token storage
+
+    const response = await fetch(`/api/contracts/${contractId}/accept`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}` // Add the token to the headers
+      },
+    });
+
+    const data = await response.json(); // Ensure you're receiving JSON
+    alert(data.message);
+
+    // If the response is OK, hide the buttons and show "Accepted"
+    if (response.ok) {
+      const negotiateButton = document.getElementById(`negotiateBtn-${contractId}`);
+      const acceptButton = document.getElementById(`acceptBtn-${contractId}`);
+      const acceptTd = document.getElementById(`acceptTd-${contractId}`);
+
+      // Hide the Negotiate button if it exists
+      if (negotiateButton) {
+        negotiateButton.style.display = "none";
+      }
+
+      // Replace Accept button with "Accepted" label
+      if (acceptTd) {
+        acceptTd.innerHTML = `
+          <span class="bg-green-500 text-white font-bold py-2 px-4 rounded opacity-50 cursor-not-allowed">
+            Accepted
+          </span>`;
+      }
+
+      // Optionally, hide the Accept button as well
+      if (acceptButton) {
+        acceptButton.style.display = "none";
+      }
+    } else {
+      // Handle cases where the response is not ok
+      alert(`Error: ${data.message || 'Unable to accept the contract.'}`);
+    }
+  } catch (error) {
+    console.error("Error accepting contract:", error);
+    alert("Error accepting contract.");
+  }
+
+  // Debugging: Log user role
+  console.log("User Role:", "<%= user.role %>");
+}
+
+
+      let currentUserEmail = "";
+      let currentUserNumber = "";
+
+      function fetchContractInfo(
+        contractId,
+        userName,
+        userNumber,
+        userEmail,
+        userRole
+      ) {
+        const modalContent = document.getElementById("modalContent");
+        currentUserEmail = userEmail;
+        currentUserNumber = userNumber;
+
+        modalContent.innerHTML = `
+        <p><strong>Contract ID:</strong> ${contractId}</p>
+        <p><strong>User Name:</strong> ${userName}</p>
+        <p><strong>User Number:</strong> ${userNumber}</p>
+        <p><strong>User Role:</strong> ${userRole}</p>
+      `;
+        document.getElementById("negotiationModal").classList.remove("hidden");
+      }
+
+      function closeModal() {
+        document.getElementById("negotiationModal").classList.add("hidden");
+      }
+
+      function sendEmail() {
+        window.location.href = `mailto:${currentUserEmail}`;
+      }
+
+      function makeCall() {
+        window.location.href = `tel:${currentUserNumber}`;
+      }
+
+      function applyFilters() {
+        const input = document
+          .getElementById("searchInput")
+          .value.toLowerCase();
+        const select = document.getElementById("filterSelect").value;
+        const tableRows = document.querySelectorAll("#contractTable tr");
+
+        tableRows.forEach((row) => {
+          const cropName = row.getAttribute("data-crop-name").toLowerCase();
+          const cropType = row.getAttribute("data-crop-type").toLowerCase();
+          const contractRole = row
+            .getAttribute("data-contract-role")
+            .toLowerCase();
+
+          const matchesSearch =
+            cropName.includes(input) || cropType.includes(input);
+          const matchesFilter =
+            select === "" || contractRole === select.toLowerCase();
+
+          if (matchesSearch && matchesFilter) {
+            row.style.display = "";
+          } else {
+            row.style.display = "none";
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - FarmConnect</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+
+    <div class="container mx-auto min-h-screen flex items-center justify-center">
+        <div class="bg-white p-8 rounded shadow-lg w-full max-w-md">
+            <h2 class="text-2xl font-bold text-center mb-8">Login to FarmConnect</h2>
+            <form method="post" action="/login">
+                <div class="mb-4">
+                    <label for="emailOrNumber" class="block text-gray-700">Email or Phone Number</label>
+                    <input type="text" id="emailOrNumber" name="emailOrNumber" class="w-full p-3 border rounded" placeholder="Enter your email or phone number" required>
+                </div>
+                <div class="mb-6">
+                    <label for="password" class="block text-gray-700">Password</label>
+                    <input type="password" id="password" name="password" class="w-full p-3 border rounded" required>
+                </div>
+                <button type="submit" class="w-full bg-green-600 text-white py-3 rounded hover:bg-green-700">Login</button>
+            </form>
+            <p class="text-center text-gray-600 mt-4">Don't have an account? <a href="signup" class="text-green-600">Sign Up</a></p>
+        </div>
+    </div>
+
+</body>
+</html>

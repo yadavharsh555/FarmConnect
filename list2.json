@@ -1,0 +1,34 @@
+[
+    {
+        "Cname": "Tomato",
+        "Ctype": "Vegetable",
+        "price": 100,
+        "quantity": 90,
+        "date": "2024-10-25",
+        "role": "Buyer"
+    },
+    {
+        "Cname": "Tomato",
+        "Ctype": "Vegetable",
+        "price": 100,
+        "quantity": 90,
+        "date": "2024-10-25",
+        "role": "Buyer"
+    },
+    {
+        "Cname": "Tomato",
+        "Ctype": "Vegetable",
+        "price": 100,
+        "quantity": 90,
+        "date": "2024-10-25",
+        "role": "Buyer"
+    },
+    {
+        "Cname": "Tomato",
+        "Ctype": "Vegetable",
+        "price": 100,
+        "quantity": 90,
+        "date": "2024-10-25",
+        "role": "Buyer"
+    }
+]

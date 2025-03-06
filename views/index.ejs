@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FarmConnect - Contract Farming Platform</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+    <style>
+        html {
+            scroll-behavior: smooth;
+            /* Enable smooth scrolling */
+        }
+
+        #img {
+            background-image: url('https://www.istockphoto.com/photo/young-indian-farmer-with-agronomist-at-banana-field-gm1316735334-404380658')
+        }
+
+        .language-dropdown {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100">
+
+    <!-- Navbar -->
+    <nav class="bg-green-600 p-4 shadow-lg " id="nav">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#" class="text-white text-2xl font-bold <i class=" ri-snowflake-fill"></i> FarmConnect</a>
+            <ul class="flex space-x-6">
+                <li><a href="#features" class="text-white hover:text-green-200">Features</a></li>
+                <!-- <li><a href="" class="text-white hover:text-green-200">Contracts</a></li> -->
+                <li><a href="#about" class="text-white hover:text-green-200">About</a></li>
+                <li><a href="#contact" class="text-white hover:text-green-200">Contact</a></li>
+
+            </ul>
+            <div class="flex gap-6 items-center">
+                <a href="login" class="text-white" onclick="openLoginModal()">Login</a>
+                <a href="signup" class="bg-white text-green-600 py-1 px-4 rounded" onclick="openSignupModal()">Sign
+                    Up</a>
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- HOME PAGE -->
+    <section class="bg-cover bg-center h-screen flex items-center overflow-hidden	 justify-center"
+        style="background-image: url('https://plus.unsplash.com/premium_photo-1661962971074-1554649d40d5?q=80&w=1882&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
+        <div class="text-center text-white">
+            <h1 class="text-5xl  font-bold">Empowering Farmers, Ensuring Stability</h1>
+            <p class="text-xl mt-4">Connect with buyers, manage contracts, and secure your income.</p>
+            <a href="signup"
+                class="mt-6 inline-block bg-green-500 text-white font-semibold py-2 px-4 rounded hover:bg-green-400">Get
+                Started</a>
+        </div>
+    </section>
+    <!-- FEATURE SECTION -->
+    <section id="features" class="py-16 px-4 bg-white">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12" id="features-title">Our Key Features</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-green-100 p-8 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-4" id="feature-1-title">Contract Management</h3>
+                    <p class="text-gray-700" id="feature-1-desc">Contract management in contract farming ensures clear
+                        agreements between farmers and buyers, covering crop details, delivery, and payments. It
+                        streamlines operations, reduces disputes, and builds trust, making transactions efficient and
+                        transparent.</p>
+                    <button class="mt-4 bg-green-500 text-white py-2 px-4 rounded hover:bg-green-400"><a
+                            href="signup">New Contract</a></button>
+                    <button class="mt-4 bg-green-500 text-white py-2 px-4 rounded hover:bg-green-400"><a
+                            href="signup">Contract List</a></button>
+                </div>
+
+                <div class="bg-green-100 p-8 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-4" id="feature-2-title">Avarage Price Of Crop </h3>
+                    <p class="text-gray-700" id="feature-2-desc">In India, crop prices vary widely based on the type,
+                        region, and season. Staple grains like wheat and rice generally have stable prices, between ₹25
+                        and ₹35 per kilogram. Fruits and vegetables, however, experience significant price fluctuations.
+                    </p>
+                    <button class="mt-4 bg-green-500 text-white py-2 px-4 rounded hover:bg-green-400"
+                        id="feature-2-btn"><a href="https://pib.gov.in/PressReleaseIframePage.aspx?PRID=2003184"
+                            target="_blank">Learn More</a></button>
+                </div>
+
+                <div class="bg-green-100 p-8 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-4" id="feature-3-title">Payment History</h3>
+                    <p class="text-gray-700" id="feature-3-desc">Our platform maintains a detailed record of all
+                        transactions, providing transparent insights into payment statuses. Users can easily track their
+                        payment history, view transaction details, and ensure timely and secure financial exchanges.</p>
+                    <button class="mt-4 bg-green-500 text-white py-2 px-4 rounded hover:bg-green-400"
+                        id="feature-3-btn"><a href="signup">Check Payments</a></button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- DASHBOARD -->
+
+    <!-- About Section -->
+    <section id="about" class="py-16  bg-gray-50">
+        <div class="container mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800">About FarmConnect</h2>
+                <p class="text-gray-600 mt-4 max-w-2xl mx-auto">
+                    FarmConnect is a platform designed to bridge the gap between farmers and buyers by simplifying the
+                    contract farming process. Our goal is to empower farmers with secure, transparent contracts while
+                    ensuring reliable market access for their produce.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 p-8 md:grid-cols-3 gap-8">
+                <!-- Mission -->
+                <div class="p-6 bg-green-300 rounded-lg shadow">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Our Mission</h3>
+                    <p class="text-gray-600">
+                        At FarmConnect, our mission is to provide farmers with a stable, predictable income by
+                        connecting them with trusted buyers. We strive to foster transparent relationships that benefit
+                        both parties.
+                    </p>
+                </div>
+
+                <!-- Features -->
+                <div class=" p-6 bg-green-300 rounded-lg shadow">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Core Features</h3>
+                    <ul class="list-disc list-inside text-gray-600 space-y-2">
+                        <li>Streamlined contract management</li>
+                        <li>Fair price negotiations</li>
+                        <li>Secure and timely payments</li>
+                        <li>Access to reliable buyers</li>
+                    </ul>
+                </div>
+
+                <!-- Impact -->
+                <div class=" p-6 bg-green-300 rounded-lg shadow">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Our Impact</h3>
+                    <p class="text-gray-600">
+                        Since its inception, FarmConnect has helped numerous farmers across regions secure stable
+                        contracts, improve their income, and build long-lasting partnerships with buyers. We're
+                        committed to making farming sustainable and profitable.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="py-16 bg-gray-200">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-6">Get in Touch Us</h2>
+            <p class="text-lg mb-8">Have questions? We're here to help. Contact us today and see how we can support your
+                farming business.</p>
+            <a href="mailto:info@farmconnect.com"
+                class="inline-block bg-green-500 text-white font-semibold py-2 px-4 rounded hover:bg-green-400">Email
+                Us</a>
+            <a href="tel:+1234567890"
+                class="inline-block bg-green-500 text-white font-semibold py-2 px-4 rounded hover:bg-green-400"
+                id="contact-call">Call Us</a>
+        </div>
+    </section>
+    <!-- FOOTER -->
+    <footer class="bg-gray-800 py-4 text-center text-white">
+        <p>&copy; 2024 FarmConnect. All rights reserved.</p>
+    </footer>
+    <!-- Login Modal -->
+
+
+
+    <!-- 
+    <script src="https://cdn.tailwindcss.com"></script> -->
+    <script>
+        // Optional: JavaScript smooth scrolling for better control (if needed)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        // document.getElementById('contract-status').textContent = 'Contract Status: Active (Updated)';
+        // const translations = {
+        //     en: {
+        //         navTitle: "FarmConnect",
+        //         navFeatures: "Features",
+        //         navDashboard: "Dashboard",
+        //         navAbout: "About",
+        //         navContact: "Contact",
+        //         heroTitle: "Empowering Farmers, Ensuring Stability",
+        //         heroSubtitle: "Connect with buyers, manage contracts, and secure your income.",
+        //         heroLearnMore: "Learn More",
+        //         featuresTitle: "Our Key Features",
+        //         feature1Title: "Contract Management",
+        //         feature1Desc: "Easily create, manage, and monitor farming contracts. Ensure transparency and trust between farmers and buyers.",
+        //         feature1Btn: "Learn More",
+        //         feature2Title: "Price Negotiation",
+        //         feature2Desc: "Negotiate fair prices for your produce directly with buyers. Get the best value for your hard work.",
+        //         feature2Btn: "Start Negotiating",
+        //         feature3Title: "Secure Payments",
+        //         feature3Desc: "Receive payments securely and on time. Track payment statuses and ensure financial stability.",
+        //         feature3Btn: "Check Payments",
+        //         dashboardTitle: "Your Dashboard",
+        //         dashboard1Title: "Real-time Contract Monitoring",
+        //         dashboard1Desc: "Monitor the status of your contracts in real-time. Stay updated on deliveries, payments, and more.",
+        //         dashboard2Title: "Chat with Buyers",
+        //         dashboard2Desc: "Negotiate prices and terms directly with buyers through our integrated chat system.",
+        //         contactTitle: "Get in Touch",
+        //         contactDesc: "Have questions? We're here to help. Contact us today and see how we can support your farming business.",
+        //         contactEmail: "Email Us",
+        //         contactCall: "Call Us",
+        //         aboutTitle: "About Us",
+        //         aboutDesc: "FarmConnect is dedicated to bridging the gap between farmers and buyers. Our platform provides a reliable marketplace, empowering farmers with the tools they need to secure stable incomes and reduce market risks.",
+        //         footerText: "&copy; 2024 FarmConnect. All rights reserved."
+        //     },
+        //     hi: {
+        //         navTitle: "फार्मकनेक्ट",
+        //         navFeatures: "विशेषताएँ",
+        //         navDashboard: "डैशबोर्ड",
+        //         navAbout: "हमारे बारे में",
+        //         navContact: "संपर्क",
+        //         heroTitle: "किसानों को सशक्त बनाना, स्थिरता सुनिश्चित करना",
+        //         heroSubtitle: "खरीदारों से जुड़ें, अनुबंध प्रबंधित करें, और अपनी आय सुरक्षित करें।",
+        //         heroLearnMore: "अधिक जानें",
+        //         featuresTitle: "हमारी प्रमुख विशेषताएँ",
+        //         feature1Title: "अनुबंध प्रबंधन",
+        //         feature1Desc: "किसानों और खरीदारों के बीच पारदर्शिता और विश्वास सुनिश्चित करने के लिए आसान तरीके से खेती के अनुबंध बनाएं, प्रबंधित करें और मॉनिटर करें।",
+        //         feature1Btn: "अधिक जानें",
+        //         feature2Title: "मूल्य वार्ता",
+        //         feature2Desc: "खरीदारों के साथ सीधे उचित मूल्य पर बातचीत करें। अपने श्रम का सर्वोत्तम मूल्य प्राप्त करें।",
+        //         feature2Btn: "वार्ता शुरू करें",
+        //         feature3Title: "सुरक्षित भुगतान",
+        //         feature3Desc: "सुरक्षित और समय पर भुगतान प्राप्त करें। भुगतान की स्थिति का ट्रैक रखें और वित्तीय स्थिरता सुनिश्चित करें।",
+        //         feature3Btn: "भुगतान जांचें",
+        //         dashboardTitle: "आपका डैशबोर्ड",
+        //         dashboard1Title: "वास्तविक समय अनुबंध मॉनिटरिंग",
+        //         dashboard1Desc: "वास्तविक समय में अपने अनुबंध की स्थिति की निगरानी करें। डिलीवरी, भुगतान और अधिक पर अपडेट रहें।",
+        //         dashboard2Title: "खरीदारों से चैट करें",
+        //         dashboard2Desc: "हमारी एकीकृत चैट सिस्टम के माध्यम से सीधे खरीदारों के साथ मूल्य और शर्तों पर बातचीत करें।",
+        //         contactTitle: "संपर्क करें",
+        //         contactDesc: "कोई प्रश्न है? हम यहाँ मदद के लिए हैं। आज ही संपर्क करें और देखें कि हम आपके खेती व्यवसाय का समर्थन कैसे कर सकते हैं।",
+        //         contactEmail: "हमें ईमेल करें",
+        //         contactCall: "हमें कॉल करें",
+        //         aboutTitle: "हमारे बारे में",
+        //         aboutDesc: "FarmConnect किसानों और खरीदारों के बीच की खाई को पाटने के लिए समर्पित है। हमारा प्लेटफार्म एक विश्वसनीय बाजार प्रदान करता है, किसानों को स्थिर आय सुरक्षित करने और बाजार के जोखिम को कम करने के लिए आवश्यक उपकरण प्रदान करता है।",
+        //         footerText: "&copy; 2024 FarmConnect. सर्वाधिकार सुरक्षित।"
+        //     }
+        // };
+
+        // function changeLanguage(language) {
+        //     const elements = {
+        //         navTitle: document.getElementById('nav-title'),
+        //         navFeatures: document.getElementById('nav-features'),
+        //         navDashboard: document.getElementById('nav-dashboard'),
+        //         navAbout: document.getElementById('nav-about'),
+        //         navContact: document.getElementById('nav-contact'),
+        //         heroTitle: document.getElementById('hero-title'),
+        //         heroSubtitle: document.getElementById('hero-subtitle'),
+        //         heroLearnMore: document.getElementById('hero-learn-more'),
+        //         featuresTitle: document.getElementById('features-title'),
+        //         feature1Title: document.getElementById('feature-1-title'),
+        //         feature1Desc: document.getElementById('feature-1-desc'),
+        //         feature1Btn: document.getElementById('feature-1-btn'),
+        //         feature2Title: document.getElementById('feature-2-title'),
+        //         feature2Desc: document.getElementById('feature-2-desc'),
+        //         feature2Btn: document.getElementById('feature-2-btn'),
+        //         feature3Title: document.getElementById('feature-3-title'),
+        //         feature3Desc: document.getElementById('feature-3-desc'),
+        //         feature3Btn: document.getElementById('feature-3-btn'),
+        //         dashboardTitle: document.getElementById('dashboard-title'),
+        //         dashboard1Title: document.getElementById('dashboard-1-title'),
+        //         dashboard1Desc: document.getElementById('dashboard-1-desc'),
+        //         dashboard2Title: document.getElementById('dashboard-2-title'),
+        //         dashboard2Desc: document.getElementById('dashboard-2-desc'),
+        //         contactTitle: document.getElementById('contact-title'),
+        //         contactDesc: document.getElementById('contact-desc'),
+        //         contactEmail: document.getElementById('contact-email'),
+        //         contactCall: document.getElementById('contact-call'),
+        //         aboutTitle: document.getElementById('about-title'),
+        //         aboutDesc: document.getElementById('about-desc'),
+        //         footerText: document.getElementById('footer-text')
+        //     };
+
+        //     const trans = translations[language];
+
+        //     Object.keys(elements).forEach(key => {
+        //         elements[key].textContent = trans[key];
+        //     });
+
+        //     if (language === 'hi') {
+        //         document.querySelectorAll('[placeholder]').forEach(el => {
+        //             el.setAttribute('placeholder', 'संदेश टाइप करें...');
+        //         });
+        //     } else {
+        //         document.querySelectorAll('[placeholder]').forEach(el => {
+        //             el.setAttribute('placeholder', 'Type your message...');
+        //         });
+        //     }
+        // }
+
+        // document.getElementById('language-selector').addEventListener('change', function () {
+        //     changeLanguage(this.value);
+        // });
+
+        // // Initialize with default language
+        // changeLanguage('en');
+
+    </script>
+</body>
+
+</html>

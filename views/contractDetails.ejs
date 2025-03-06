@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contract Details</title>
+</head>
+<body>
+    <h1>Contract Details</h1>
+    <h2>Contract Name: <%= contract.Cname %></h2>
+    <p>Contract Type: <%= contract.Ctype %></p>
+    <p>Price:&#8377; <%= contract.price %></p>
+    <p>Quantity: <%= contract.quantity %></p>
+    <p>Date: <%= contract.date.toLocaleDateString() %></p>
+    <p>Role: <%= contract.role %></p>
+    <p>State: <%= contract.state %></p>
+    <p>City: <%= contract.city %></p>
+
+    <h3>Buyer Details:</h3>
+    <p>Name: <%= contract.buyerId ? contract.buyerId.name : 'N/A' %></p>
+    <p>Email: <%= contract.buyerId ? contract.buyerId.email : 'N/A' %></p>
+
+    <h3>Farmer Details:</h3>
+    <p>Name: <%= contract.farmerId ? contract.farmerId.name : 'N/A' %></p>
+    <p>Email: <%= contract.farmerId ? contract.farmerId.email : 'N/A' %></p>
+
+    <a href="/contracts">Back to Contracts</a>
+</body>
+</html>

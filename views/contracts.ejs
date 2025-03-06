@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contracts - Create a new contract</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <section class="py-4 bg-gray-100">
+      <div class="container mx-auto">
+        <h2 class="text-3xl font-bold text-center mb-8">Create New Contract</h2>
+        <form
+          class="max-w-lg mx-auto bg-white p-8 rounded-lg shadow"
+          method="post"
+          action="/contractHistory"
+        >
+          <div class="mb-4">
+            <label for="crop" class="block text-gray-700">Crop Name</label>
+            <input
+              name="Cname"
+              type="text"
+              id="crop"
+              class="w-full p-2 border border-gray-300 rounded"
+              placeholder="e.g., Wheat"
+              required
+            />
+          </div>
+          <div class="mb-4">
+            <label for="ctype" class="block text-gray-700">Crop Type</label>
+            <input
+              name="Ctype"
+              type="text"
+              id="ctype"
+              class="w-full p-2 border border-gray-300 rounded"
+              placeholder="e.g., GW 322 and HI 1544"
+              required
+            />
+          </div>
+          <div class="mb-4">
+            <label for="price" class="block text-gray-700"
+              >Price (per ton)</label
+            >
+            <input
+              name="price"
+              type="number"
+              id="price"
+              class="w-full p-2 border border-gray-300 rounded"
+              placeholder="e.g.,&#8377;200"
+              required
+            />
+          </div>
+          <div class="mb-4">
+            <label for="quantity" class="block text-gray-700"
+              >Quantity (tons)</label
+            >
+            <input
+              name="quantity"
+              type="number"
+              id="quantity"
+              class="w-full p-2 border border-gray-300 rounded"
+              placeholder="e.g., 50"
+              required
+            />
+          </div>
+          <div class="mb-4">
+            <label for="date" class="block text-gray-700">Delivery Date</label>
+            <input
+              name="date"
+              type="date"
+              id="date"
+              class="w-full p-2 border border-gray-300 rounded"
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            class="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-opacity-50"
+          >
+            Submit Contract
+          </button>
+        </form>
+      </div>
+    </section>
+  </body>
+</html>
